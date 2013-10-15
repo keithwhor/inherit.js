@@ -63,6 +63,12 @@ var test2 = new $class.myClass();
 console.log(test2.myVar); // new instance, will print :: 100
 ```
 
+Was it prototyped correctly? The ```instanceof``` operator will tell us...
+
+```javascript
+console.log(test instanceof $class.myClass); // will print :: true
+```
+
 Initialization
 --------------
 
@@ -121,6 +127,17 @@ __NOTE__: If you do not make a call to ```$super()```, child methods will overri
 ```javascript
 var obj2 = new $class.clsExtension(); // will print :: 'Extension initialized.'
 console.log([obj2.x, obj2.y]); // will print :: [99, 99]
+```
+
+And what about ```instanceof```?
+
+```javascript
+// will print :: true
+console.log(test instanceof $class.clsExtension);
+
+// will also print :: true
+console.log(test instanceof $class.clsInit);
+// Hooray!
 ```
 
 Debugging
