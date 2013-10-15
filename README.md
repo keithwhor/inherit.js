@@ -2,7 +2,11 @@ inherit-js
 ==========
 
 A more elegant way to prototype.
-inherit.js combines function chaining with Python-inspired syntax to make object orientation in Javascript more manageable and easier to read. 
+
+inherit.js is a lightweight (3kb) wrapper for prototyping in js.
+
+It combines function chaining with Python-inspired syntax
+to make object orientation in Javascript more manageable and easier to read.
 
 Compatibility
 -------------
@@ -118,6 +122,36 @@ __NOTE__: If you do not make a call to ```$super()```, child methods will overri
 var obj2 = new $class.clsExtension(); // will print :: 'Extension initialized.'
 console.log([obj2.x, obj2.y]); // will print :: [99, 99]
 ```
+
+Debugging
+---------
+
+You'll notice that you'll come across very hard-to-trace bugs when defining methods with inherit.js.
+
+Don't worry!
+
+Just call:
+```javascript
+$debug();
+```
+
+Before defining your classes, and if you come across errors the class and method will be pointed out for you. :)
+
+Performance testing
+-------------------
+
+inherit.js comes with a built in performance-testing function.
+
+As inherit.js is largely a prototyping wrapper, there *should* be no decrease in performance associated with
+the code you write, with the exception of methods that use ```$super()``` - expect them to take a few more nanoseconds. ;)
+(Test it yourself!)
+
+```javascript
+var iteration_count = 1000000; // Let's test a million times...
+$test(function() { /* code to test */ }, 'My Test Name', iteration_count);
+```
+
+This will output a nice little log in your console telling you performance statistics - operations per second, and time per operation in nanoseconds.
 
 That's it!
 ----------
