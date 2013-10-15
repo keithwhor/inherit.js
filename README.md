@@ -84,8 +84,8 @@ $class('clsInit')
     '__init__',
     function(x, y) {
       // x|0, y|0 not typos - force x, y to 32-bit signed ints by bitwise OR with 0.
-      if(typeof(x)!='undefined') { this.x = x|0; }
-      if(typeof(y)!='undefined') { this.y = y|0; }
+      this.x = x|0;
+      this.y = y|0;
     }
   )
   
@@ -112,7 +112,7 @@ $class('clsExtension')
     '__init__',
     function(a) {
       console.log('Extension initialized.');
-      return $super(99,99);
+      $super(99,99);
     }
   )
   
