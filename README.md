@@ -43,9 +43,10 @@ $class('myClass')
 ```
 
 This will create a class ```$class.myClass``` with prototyped variable ```myVar``` and prototype method ```myMethod```.
-*NOTE*: ```.class$``` might look like syntactic sugar, but actually has functional significance. Do not forget it!
 
-*All objects (classes) created this way will be stored in the global $class variable.*
+__NOTE__: ```.class$``` might look like syntactic sugar, but actually has functional significance. Do not forget it!
+
+__All objects (classes) created this way will be stored in the global $class variable.__
 
 ```javascript
 var test = new $class.myClass(); // brackets are not necessary if we have no initialization variables
@@ -83,7 +84,7 @@ $class('clsInit')
 When we instantiate ```$class.clsInit```, we can now provide two arguments and have the newly created object's ```x``` and ```y``` values set.
 
 ```javascript
-var obj = new clsInit(37,69);
+var obj = new $class.clsInit(37,69);
 console.log([obj.x, obj.y]); // will print :: [37, 69]
 ```
 
@@ -110,7 +111,8 @@ $class('clsExtension')
 You'll notice we have a ```$super()``` call in the ```__init__``` method.
 ```$super()``` will automatically reference the parent method of the same name if it exists, otherwise it will return null.
 If a parent object does not have a method of the same name, ```$super()``` will continue up the prototype tree to find the next method that has one, if it exists.
-*NOTE*: If you do not make a call to ```$super()```, child methods will override parent methods completely.
+
+__NOTE__: If you do not make a call to ```$super()```, child methods will override parent methods completely.
 
 ```javascript
 var obj2 = new $class.clsExtension(); // will print :: 'Extension initialized.'
