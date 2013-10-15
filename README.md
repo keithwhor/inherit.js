@@ -48,7 +48,7 @@ $class('myClass')
 
 This will create a class ```$class.myClass``` with prototyped variable ```myVar``` and prototype method ```myMethod```.
 
-__NOTE__: ```.class$``` might look like syntactic sugar, but actually has functional significance. Do not forget it!
+__NOTE__: ```.class$;``` might look like syntactic sugar, but actually has functional significance. Do not forget it!
 
 __All objects (classes) created this way will be stored in the global $class variable.__
 
