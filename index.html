@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>inherit.js by keithwhor</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>inherit.js</h1>
+        <p>A more elegant way to prototype</p>
+        <p class="view"><a href="https://github.com/keithwhor/inherit-js">View the Project on GitHub <small>keithwhor/inherit-js</small></a></p>
+        <ul>
+          <li><a href="https://github.com/keithwhor/inherit-js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/keithwhor/inherit-js/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/keithwhor/inherit-js">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="inheritjs" class="anchor" href="#inheritjs"><span class="octicon octicon-link"></span></a>inherit.js</h1>
+
+<p>A more elegant way to prototype.</p>
+
+<p>inherit.js is a lightweight (3kb) wrapper for prototyping in js.</p>
+
+<p>It combines function chaining with Python-inspired syntax
+to make object orientation in Javascript more manageable and easier to read.</p>
+
+<h2>
+<a name="compatibility" class="anchor" href="#compatibility"><span class="octicon octicon-link"></span></a>Compatibility</h2>
+
+<p>inherit.js is supported by all current versions of major browsers.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>inherit.js is currently only supported client-side, but expect node support soon. :)</p>
+
+<p>Download inherit.min.js and include it on any page using</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"path_to_my_scripts/inherit.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<p>before you start using inherit-js code, and you're good to go!</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Using inherit.js is easy.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$class</span><span class="p">(</span><span class="s1">'myClass'</span><span class="p">)</span>
+
+  <span class="p">.</span><span class="kd">var</span><span class="p">(</span><span class="s1">'myVar'</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+  <span class="p">.</span><span class="nx">def</span><span class="p">(</span>
+    <span class="s1">'myMethod'</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">myVar</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+
+<span class="p">.</span><span class="kr">class</span><span class="nx">$</span><span class="p">;</span>
+</pre></div>
+
+<p>This will create a class <code>$class.myClass</code> with prototyped variable <code>myVar</code> and prototype method <code>myMethod</code>.</p>
+
+<p><strong>NOTE</strong>: <code>.class$;</code> might look like syntactic sugar, but actually has functional significance. Do not forget it!</p>
+
+<p><strong>All objects (classes) created this way will be stored in the global $class variable.</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// parens are not necessary if we have no initialization variables</span>
+<span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$class</span><span class="p">.</span><span class="nx">myClass</span><span class="p">();</span>
+
+<span class="c1">// will print :: 100</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">myVar</span><span class="p">);</span>
+
+<span class="c1">// increment test.myVar, return result;</span>
+<span class="nx">test</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">();</span>
+
+<span class="c1">// will print :: 101</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">myMethod</span><span class="p">());</span>
+
+<span class="c1">// myVar was incremented after it was returned, will print :: 102</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span><span class="p">.</span><span class="nx">myVar</span><span class="p">);</span>
+
+<span class="c1">// new instance, will print :: 100</span>
+<span class="kd">var</span> <span class="nx">test2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$class</span><span class="p">.</span><span class="nx">myClass</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test2</span><span class="p">.</span><span class="nx">myVar</span><span class="p">);</span>
+</pre></div>
+
+<p>Was it prototyped correctly? The <code>instanceof</code> operator will tell us...</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// will print :: true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span> <span class="k">instanceof</span> <span class="nx">$class</span><span class="p">.</span><span class="nx">myClass</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="initialization" class="anchor" href="#initialization"><span class="octicon octicon-link"></span></a>Initialization</h2>
+
+<p>inherit.js supports an <code>__init__</code> magic method, which can take any number of arguments</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$class</span><span class="p">(</span><span class="s1">'clsInit'</span><span class="p">)</span>
+
+  <span class="p">.</span><span class="kd">var</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">.</span><span class="kd">var</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+  <span class="p">.</span><span class="nx">def</span><span class="p">(</span>
+    <span class="s1">'__init__'</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// x|0, y|0 not typos - force x, y to 32-bit signed ints by bitwise OR with 0.</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="o">|</span><span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="o">|</span><span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+
+<span class="p">.</span><span class="kr">class</span><span class="nx">$</span><span class="p">;</span>
+</pre></div>
+
+<p>When we instantiate <code>$class.clsInit</code>, we can now provide two arguments and have the newly created object's <code>x</code> and <code>y</code> values set.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$class</span><span class="p">.</span><span class="nx">clsInit</span><span class="p">(</span><span class="mi">37</span><span class="p">,</span><span class="mi">69</span><span class="p">);</span>
+
+<span class="c1">// will print :: [37, 69]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="nx">obj</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span><span class="p">]);</span>
+</pre></div>
+
+<h2>
+<a name="inheritance" class="anchor" href="#inheritance"><span class="octicon octicon-link"></span></a>Inheritance</h2>
+
+<p>inherit.js also provides an easy way to inherit from other inherit.js objects using the <code>.extends()</code> function.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$class</span><span class="p">(</span><span class="s1">'clsExtension'</span><span class="p">)</span>
+  <span class="p">.</span><span class="kr">extends</span><span class="p">(</span><span class="nx">$class</span><span class="p">.</span><span class="nx">clsInit</span><span class="p">)</span>
+
+  <span class="p">.</span><span class="nx">def</span><span class="p">(</span>
+    <span class="s1">'__init__'</span><span class="p">,</span>
+    <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Extension initialized.'</span><span class="p">);</span>
+      <span class="nx">$super</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span><span class="mi">99</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+
+<span class="p">.</span><span class="kr">class</span><span class="nx">$</span><span class="p">;</span>
+</pre></div>
+
+<p>You'll notice we have a <code>$super()</code> call in the <code>__init__</code> method.</p>
+
+<p><code>$super()</code> will automatically reference the parent method of the same name if it exists, otherwise it will return null.</p>
+
+<p>If a parent object does not have a method of the same name, <code>$super()</code> will continue up the prototype tree to find the next method that has one, if it exists.</p>
+
+<p><strong>NOTE</strong>: If you do not make a call to <code>$super()</code>, child methods will override parent methods completely.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// will print :: 'Extension initialized.'</span>
+<span class="kd">var</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">$class</span><span class="p">.</span><span class="nx">clsExtension</span><span class="p">();</span>
+
+<span class="c1">// will print :: [99, 99]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="nx">obj2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">obj2</span><span class="p">.</span><span class="nx">y</span><span class="p">]);</span>
+</pre></div>
+
+<p>And what about <code>instanceof</code>?</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// will print :: true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span> <span class="k">instanceof</span> <span class="nx">$class</span><span class="p">.</span><span class="nx">clsExtension</span><span class="p">);</span>
+
+<span class="c1">// will also print :: true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">test</span> <span class="k">instanceof</span> <span class="nx">$class</span><span class="p">.</span><span class="nx">clsInit</span><span class="p">);</span>
+<span class="c1">// Hooray!</span>
+</pre></div>
+
+<h2>
+<a name="debugging" class="anchor" href="#debugging"><span class="octicon octicon-link"></span></a>Debugging</h2>
+
+<p>You'll notice that you'll come across very hard-to-trace bugs when defining methods with inherit.js.</p>
+
+<p>Don't worry!</p>
+
+<p>Just call:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$debug</span><span class="p">();</span>
+</pre></div>
+
+<p>Before defining your classes, and if you come across errors the class and method will be pointed out for you. :)</p>
+
+<h2>
+<a name="performance-testing" class="anchor" href="#performance-testing"><span class="octicon octicon-link"></span></a>Performance testing</h2>
+
+<p>inherit.js comes with a built in performance-testing function.</p>
+
+<p>As inherit.js is largely a prototyping wrapper, there <em>should</em> be no decrease in performance associated with
+the code you write, with the exception of methods that use <code>$super()</code> - expect them to take a few more nanoseconds. ;)
+(Test it yourself!)</p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">// Let's test a million times...</span>
+<span class="kd">var</span> <span class="nx">iteration_count</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
+<span class="nx">$test</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* code to test */</span> <span class="p">},</span> <span class="s1">'My Test Name'</span><span class="p">,</span> <span class="nx">iteration_count</span><span class="p">);</span>
+</pre></div>
+
+<p>This will output a nice little log in your console telling you performance statistics - operations per second, and time per operation in nanoseconds.</p>
+
+<h2>
+<a name="thats-it" class="anchor" href="#thats-it"><span class="octicon octicon-link"></span></a>That's it!</h2>
+
+<p>You're all ready to use inherit.js. Go nuts! :)</p>
+
+<p>Feel free to contact me at keithwhor at gmail.com</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/keithwhor">keithwhor</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
