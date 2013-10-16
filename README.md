@@ -134,10 +134,10 @@ And what about ```instanceof```?
 
 ```javascript
 // will print :: true
-console.log(test instanceof $class.clsExtension);
+console.log(obj2 instanceof $class.clsExtension);
 
 // will also print :: true
-console.log(test instanceof $class.clsInit);
+console.log(obj2 instanceof $class.clsInit);
 // Hooray!
 ```
 
